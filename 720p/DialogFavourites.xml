@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+	<defaultcontrol always="true">4500</defaultcontrol>
+	<include>dialogeffect</include>	
+	
+	<onunload>SetFocus(9000)</onunload>
+	<onunload>Skin.Reset(FavRow)</onunload>
+	<onunload>Skin.Reset(FavColumn)</onunload>
+
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+	
+	<controls>			
+		<control type="group" id="4500">
+			<left>0</left> 
+			<top>275</top>				
+			
+			<!-- Animation Open Close -->
+			<animation effect="fade" start="0" end="100" delay="300" time="200">WindowOpen</animation>			
+			<animation effect="fade" start="100" end="0" time="0">WindowClose</animation>		
+			
+			<!-- Row Slide -->
+			<animation effect="slide" start="0,0" end="0,0" time="0" condition="StringCompare(Skin.String(FavRow),0)">conditional</animation>
+			<animation effect="slide" start="0,0" end="0,187" time="0" condition="StringCompare(Skin.String(FavRow),1)">conditional</animation>
+			<!-- Column Slide -->
+			<animation effect="slide" start="0,0" end="383,0" time="0" condition="StringCompare(Skin.String(FavColumn),0)">conditional</animation>
+			<animation effect="slide" start="0,0" end="803,0" time="0" condition="StringCompare(Skin.String(FavColumn),1)">conditional</animation>
+			<animation effect="slide" start="0,0" end="410,0" time="0" condition="StringCompare(Skin.String(FavColumn),2)">conditional</animation>	
+		
+		
+			<!-- Panel -->
+			<control type="image">						
+				<animation type="Conditional=" condition="StringCompare(Skin.String(FavColumn),2)">								
+					<effect type="rotate" start="0" end="180" time="0" center="auto" />
+					<effect type="slide" start="0,0" end="-20,0" time="0" />
+				</animation>					
+				<top>0</top>	
+				<left>0</left>
+				<width>465</width>
+				<height>180</height>
+				<texture>home/home_submenu.png</texture>
+			</control>	
+
+			<!-- Icon -->
+			<control type="image">			
+				<left>300</left>
+				<top>23</top>
+				<width>130</width>
+				<height>130</height>				
+				<fadetime>IconCrossfadeTime</fadetime>		
+				<texture fallback="DefaultAddonNone.png">$INFO[ListItem.Icon]</texture>	
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+			</control>		
+
+			<!-- Is Empty Label -->
+			<control type="label">
+				<visible>IsEmpty(ListItem.Label)</visible>
+				<left>120</left>
+				<top>18</top>
+				<height>50</height>
+				<width>400</width>						
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font_HomeSubMenu</font>				
+				<textcolor>black</textcolor>				
+				<label>$LOCALIZE[504]...</label>
+			</control>
+			
+			<control type="button" id="451">
+				<visible>IsEmpty(ListItem.Label)</visible>
+				<include>HiddenControl</include>										
+				<onclick>-</onclick>
+				<onleft>Dialog.Close(Favourites)</onleft>					
+				<onright>Dialog.Close(Favourites)</onright>	
+			</control>			
+			
+			<!-- List 450 -->
+			<control type="list" id="450">
+				<left>50</left>
+				<top>18</top>
+				<width>400</width>
+				<height>140</height>
+				<onup>-</onup>
+				<ondown>-</ondown>				
+				<onleft>Dialog.Close(Favourites)</onleft>					
+				<onright>Dialog.Close(Favourites)</onright>				
+				<pagecontrol>-</pagecontrol>
+				<scrolltime>200</scrolltime>
+				<itemlayout height="28">					
+					<control type="label">
+						<left>10</left>
+						<top>0</top>
+						<height>28</height>
+						<width>220</width>						
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>font_HomeSubMenu</font>
+						<textcolor>black</textcolor>
+						<selectedcolor>black</selectedcolor>		
+						<info>ListItem.Label</info>
+					</control>					
+				</itemlayout>
+				<focusedlayout height="28">				
+					<control type="fadelabel">
+						<left>10</left>
+						<top>0</top>
+						<height>28</height>
+						<width>220</width>						
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>font_HomeSubMenu</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>white</selectedcolor>
+						<info>ListItem.Label</info>
+						<scrollspeed>30</scrollspeed>
+						<pauseatend>2000</pauseatend>
+						<scrollout>false</scrollout>
+					</control>
+				</focusedlayout>
+			</control>			
+		</control>
+	</controls>
+
+</window>

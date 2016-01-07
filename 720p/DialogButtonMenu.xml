@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="buttonMenu">
+	<defaultcontrol>9001</defaultcontrol>
+	<include>dialogeffect</include>
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+	<controls>
+		<control type="button" id="9001">
+			<description>Make sure we hit the first button in the group list and not the close window button</description>
+			<left>-16</left>
+			<top>-16</top>
+			<width>4</width>
+			<height>4</height>
+			<label>-</label>
+			<font>-</font>
+			<onfocus>down</onfocus>
+			<texturefocus>-</texturefocus>
+			<texturenofocus>-</texturenofocus>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<onup>9000</onup>
+			<ondown>2</ondown>
+		</control>	
+
+		<!--Panel-->
+		<control type="image">
+			<left>442</left>
+			<top>335</top>
+			<width>40</width>
+			<height>40</height>
+			<texture>arrow-left-black.png</texture>
+		</control>			
+		<control type="image">
+			<left>450</left>
+			<top>80</top>
+			<width>350</width>
+			<height>600</height>
+			<texture border="40">DialogBackSmall.png</texture>
+			<aspectratio>stretch</aspectratio>
+		</control>
+		<control type="label" id="200">
+			<left>471</left>
+			<top>125</top>
+			<textoffsetx>25</textoffsetx>
+			<width>308</width>
+			<height>45</height>
+			<font>font_SubMenu</font>
+			<label>$LOCALIZE[33061] :</label>
+			<textcolor>blue</textcolor>
+			<align>left</align>
+			<aligny>center</aligny>
+		</control>
+
+		<control type="grouplist" id="9000">
+			<left>471</left>
+			<top>180</top>
+			<width>308</width>
+			<height max="405">auto</height>
+			<itemgap>0</itemgap>	
+
+			<control type="button" id="2">
+				<description>Exit button</description>
+				<include>ButtonSubMenuCommonValues</include>
+				<onclick>Quit()</onclick>			
+				<label>13012</label>
+				<visible>System.ShowExitButton</visible>
+			</control>
+			<control type="button" id="3">
+				<description>Shutdown button</description>
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>Powerdown()</onclick>
+				<visible>System.CanPowerDown</visible>						
+				<label>13016</label>
+			</control>
+			<control type="button" id="4">
+				<description>Custom Shutdown Timer</description>
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>			
+				<label>20150</label>
+				<visible>!System.HasAlarm(shutdowntimer)</visible>
+				<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+			</control>
+			<control type="button" id="5">
+				<description>Cancel Shutdown Timer</description>
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>CancelAlarm(shutdowntimer)</onclick>				
+				<label>20151</label>
+				<visible>System.HasAlarm(shutdowntimer)</visible>
+			</control>
+			<control type="button" id="6">
+				<description>Suspend button</description>	
+				<include>ButtonSubMenuCommonValues</include>
+				<onclick>Suspend()</onclick>
+				<visible>System.CanSuspend</visible>
+				<label>13011</label>
+			</control>
+			<control type="button" id="7">
+				<description>Hibernate button</description>		
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>Hibernate()</onclick>				
+				<label>13010</label>
+			</control>
+			<control type="button" id="8">
+				<description>Reboot button</description>	
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>Reset()</onclick>
+				<visible>System.CanReboot</visible>				
+				<label>13013</label>
+			</control>
+			<control type="button" id="9">
+				<description>Logoff button</description>	
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>dialog.close(all,true)</onclick>
+				<onclick>System.LogOff</onclick>				
+				<label>$LOCALIZE[20126] $INFO[system.profilename]</label>
+				<visible>System.HasLoginScreen | IntegerGreaterThan(System.ProfileCount,1)</visible>
+				<visible>System.Loggedon</visible>
+			</control>
+			<control type="togglebutton" id="10">
+				<description>Master mode button</description>	
+				<include>ButtonSubMenuCommonValues</include>
+				<label>20046</label>
+				<altlabel>20045</altlabel>			
+				<usealttexture>!System.IsMaster</usealttexture>				
+				<onclick>mastermode</onclick>				
+				<visible>System.HasLocks</visible>
+			</control>
+			<control type="group" id="11">
+				<width>0</width>
+				<height>0</height>
+				<visible>System.HasAlarm(shutdowntimer)</visible>
+				<control type="image">
+					<description>background top image</description>
+					<left>0</left>
+					<top>0</top>
+					<width>340</width>
+					<height>70</height>
+					<texture border="25,5,25,5">DialogContextMiddle.png</texture>
+				</control>
+				<control type="textbox">
+					<left>25</left>
+					<top>22</top>
+					<width>290</width>
+					<height>48</height>
+					<font>font12</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<align>center</align>
+					<label>$LOCALIZE[31329] [B]$INFO[System.Alarmpos][/B]</label>
+				</control>
+			</control>
+			<control type="button" id="12">
+				<description>Inhibit idle shutdown</description>	
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>InhibitIdleShutdown(true)</onclick>			
+				<label>13017</label>
+				<visible>System.HasShutdown +!System.IsInhibit</visible>
+			</control>
+			<control type="button" id="13">
+				<description>Allow idle shutdown</description>	
+				<include>ButtonSubMenuCommonValues</include>				
+				<onclick>InhibitIdleShutdown(false)</onclick>			
+				<label>13018</label>
+				<visible>System.HasShutdown + System.IsInhibit</visible>
+			</control>			
+		</control>
+	</controls>
+</window>

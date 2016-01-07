@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<include name="CommonRootView">	
+		<control type="group">
+			<visible>Control.IsVisible(50)</visible>			
+
+			<!-- Panel -->
+			<control type="image">
+				<left>7</left>
+				<top>147</top>
+				<width>1269</width>
+				<height>527</height>
+				<texture>views/view_50_list_panel_noinfo.png</texture>
+			</control>	
+
+			<!-- Icon -->
+			<control type="image"> 				
+				<left>100</left>
+				<top>280</top>
+				<width>200</width>
+				<height>200</height>
+				<fadetime>IconCrossfadeTime</fadetime>				
+				<texture background="true">$INFO[ListItem.Icon]</texture>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+			</control>		
+
+			<!-- List 50 -->
+			<control type="list" id="50">
+				<left>0</left>
+				<top>213</top>
+				<width>1280</width>
+				<height>400</height>
+				<onup>50</onup>
+				<ondown>50</ondown>
+				<onleft>9000</onleft>
+				<onright>-</onright>
+				<focusposition>4</focusposition>
+				<orientation>vertical</orientation>
+				<viewtype label="535">list</viewtype>
+				<scrolltime tween="sine" easing="out">320</scrolltime>
+
+				<itemlayout width="1180" height="40">
+					<control type="image"> <!--Dummyload-->				
+						<left>-10</left>
+						<top>-10</top>
+						<width>1</width>
+						<height>1</height>							
+						<texture background="true">$INFO[ListItem.Icon]</texture>						
+					</control>	
+					<control type="label">
+						<left>410</left>
+						<top>0</top>
+						<width>733</width>
+						<height>40</height>
+						<aligny>center</aligny>
+						<scroll>false</scroll>
+						<font>font_List</font>
+						<textcolor>grey3</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<label>$VAR[ListLabel1Value]  $VAR[ListLabelValueWatched]</label>                             
+					</control>
+					<control type="image">                     
+						<left>410</left>
+						<top>37</top>
+						<width>800</width>
+						<height>13</height>
+						<fadetime>400</fadetime>
+						<colordiffuse>ffFFFFFF</colordiffuse>
+						<texture border="10,0,10,0">views/separator.png</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1180" height="40">                          
+					<control type="group">
+						<control type="image"> <!--Dummyload-->				
+							<left>-10</left>
+							<top>-10</top>
+							<width>1</width>
+							<height>1</height>							
+							<texture background="true">$INFO[ListItem.Icon]</texture>						
+						</control>
+						<control type="image">							
+							<left>380</left>
+							<width>830</width>
+							<height>37</height>
+							<colordiffuse>88ffffff</colordiffuse>
+							<texture>views/view_50_slider.png</texture>
+						</control>							
+						<control type="label">
+							<left>410</left>
+							<top>0</top>
+							<width>733</width>
+							<height>40</height>
+							<aligny>center</aligny>
+							<scroll>false</scroll>
+							<font>font_List</font>
+							<textcolor>blue</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<shadowcolor>-</shadowcolor>								
+							<label>$VAR[ListLabel1Value]  $VAR[ListLabelValueWatched]</label>                                
+						</control> 
+						<control type="image">								
+							<left>410</left>
+							<top>37</top>
+							<width>800</width>
+							<height>13</height>
+							<fadetime>400</fadetime>
+							<colordiffuse>ffFFFFFF</colordiffuse>
+							<texture border="10,0,10,0">views/separator.png</texture>
+						</control>							
+					</control>
+				</focusedlayout>			   
+
+			</control>
+			
+			<!-- RSS Label -->
+			<control type="label">
+				<left>100</left>
+				<top>597</top>
+				<width>1080</width>
+				<height>120</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<font>font_List_RSS</font>
+				<textcolor>black</textcolor>					
+				<label>$VAR[ListLabel2Value]</label>  
+				<visible>!StringCompare(ListItem.Label,..)</visible>
+			</control> 
+
+		</control>
+	</include>
+</includes>

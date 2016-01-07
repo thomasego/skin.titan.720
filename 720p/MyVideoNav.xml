@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<menucontrol>9000</menucontrol>
+	<views>50,560</views>
+	<onload condition="!Skin.HasSetting(FirstTimeRun)">ActivateWindow(1112)</onload>
+	<controls>
+		<include>CommonBackground</include>	
+	
+		
+		<!-- Views -->
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>			
+			<include>CommonRootView</include>		
+			<include>LiveTVView1</include>
+		</control>
+		
+		<!-- Info Lablel + Now Playing -->
+		<control type="group">
+			<depth>DepthFooter</depth>			
+			<include>CommonNowPlaying</include>
+		</control>		
+		
+		<!-- Header -->
+		<include name="CommonWindowHeader">
+			<param name="Icon" value="icon_video" />
+			<param name="Label" value="$LOCALIZE[3]" />
+		</include>
+		
+		<!-- Sub Menu Tab Left -->
+		<include>SubMenuTabLeft</include>		
+		
+		<!-- Sub Menu -->
+		<control type="group">
+			<left>-405</left>
+			<include>AnimationSubMenu</include>
+			
+			<!--Panel-->
+			<control type="image">
+				<left>-8</left>
+				<top>335</top>
+				<width>40</width>
+				<height>40</height>
+				<texture>arrow-left-black.png</texture>
+			</control>			
+			<control type="image">
+				<top>80</top>
+				<width>350</width>
+				<height>600</height>
+				<texture border="40">DialogBackSmall.png</texture>
+				<aspectratio>stretch</aspectratio>
+			</control>
+			
+			<control type="grouplist" id="9000">
+				<left>21</left>
+				<top>125</top>
+				<width>308</width>
+				<height max="480">auto</height>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onback>50</onback>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<onback>50</onback>
+				<itemgap>0</itemgap>	
+				<control type="label" id="201">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>45</height>
+					<font>font_SubMenu</font>
+					<label>$LOCALIZE[31006] :</label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="label" id="301">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>10</height>
+					<font>font_SubMenu</font>
+					<label></label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="button" id="2">
+					<description>View As button</description>
+					<textwidth>235</textwidth>
+					<include>ButtonSubMenuCommonValues</include>
+					<label>-</label>
+				</control>
+				<control type="button" id="3">
+					<description>Sort by button</description>
+					<include>ButtonSubMenuCommonValues</include>
+					<label>103</label>
+				</control>
+				<control type="togglebutton" id="4">
+					<description>Sort asc</description>
+					<include>ButtonSubMenuCommonValues</include>					
+					<label>31051</label>
+					<altlabel>31050</altlabel>					
+					<usealttexture>Container.SortDirection(Ascending)</usealttexture>
+				</control>
+				<control type="radiobutton" id="98">					
+					<description>Filter</description>
+					<include>ButtonSubMenuCommonValues</include>
+					<texturefocus>-</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<label>587</label>
+					<selected>Container.Filtered</selected>
+					<onclick>right</onclick>
+					<onclick>Filter</onclick>
+				</control>					
+				<control type="label" id="202">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>45</height>
+					<font>font_SubMenu</font>
+					<label>$LOCALIZE[31026] :</label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="label" id="302">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>10</height>
+					<font>font_SubMenu</font>
+					<label></label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="radiobutton" id="14">	
+					<description>Watched Toggle</description>
+					<include>ButtonSubMenuCommonValues</include>	
+					<label>20367</label>					
+				</control>
+				<control type="button" id="8">
+					<description>Search</description>
+					<include>ButtonSubMenuCommonValues</include>
+					<label>137</label>
+				</control>
+				<control type="radiobutton" id="16">				
+					<description>PartyMode</description>
+					<label>589</label>
+					<include>ButtonSubMenuCommonValues</include>
+					<texturefocus>-</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<visible>Container.Content(MusicVideos)</visible>
+				</control>
+				<control type="radiobutton" id="11">
+					<description>Unlock Shares</description>
+					<textwidth>170</textwidth>
+					<include>ButtonSubMenuCommonValues</include>
+					<texturefocus>-</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<label>20336</label>
+					<onclick>mastermode</onclick>
+					<selected>system.ismaster</selected>
+					<visible>system.haslocks</visible>
+				</control>				
+				<control type="label" id="203">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>45</height>
+					<font>font_SubMenu</font>
+					<label>$LOCALIZE[31039] :</label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="label" id="303">
+					<textoffsetx>25</textoffsetx>
+					<width>308</width>
+					<height>10</height>
+					<font>font_SubMenu</font>
+					<label></label>
+					<textcolor>blue</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="togglebutton" id="20">
+					<description>Update library</description>					
+					<include>ButtonSubMenuCommonValues</include>
+					<label>653</label>
+					<altlabel>13353</altlabel>
+					<alttexturefocus>-</alttexturefocus>
+					<alttexturenofocus>-</alttexturenofocus>
+					<usealttexture>library.isscanningvideo</usealttexture>
+				</control>
+				<!--include>CommonNowPlaying_Controls</include-->
+			</control>
+		</control>
+	
+	</controls>
+</window>
